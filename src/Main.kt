@@ -13,20 +13,17 @@ fun main(): Unit = runBlocking {
         val humedadMaxima = async { humedadMaxima(meteoData) }
         val vientoMaximo = async { maximoViento(meteoData) }
         val vientoMinimo = async { minimoViento(meteoData) }
-        println(
-            """TEMPERATURA:
-        |Mínima: ${"%.2f".format(tempMinima.await())}
-        |Máxima: ${"%.2f".format(tempMaxima.await())}
-        |Promedio: ${"%.2f".format(promedioTemp.await())}
-        |---------------------------------
-        |HUMEDAD:
-        |Mínima:${"%.2f".format(humedadMin.await())}
-        |Máxima: ${"%.2f".format(humedadMaxima.await())}
-        |---------------------------------
-        |VIENTO:
-        |Mínimo: ${vientoMinimo.await()}
-        |Máximo: ${vientoMaximo.await()}
-    """.trimMargin()
-        )
+        println("TEMPERATURA:")
+        imprimirValor("Mínima:",tempMinima.await())
+        imprimirValor("Máxima:",tempMaxima.await())
+        imprimirValor("Promedio:",promedioTemp.await())
+        println("---------------------------------")
+        println("HUMEDAD:")
+        imprimirValor("Minima:",humedadMin.await())
+        imprimirValor("Maxima:",humedadMaxima.await())
+        println("---------------------------------")
+        println("VIENTO:")
+        println("Mínimo: ${vientoMinimo.await()} ")
+        println("Máximo: ${vientoMaximo.await()} ")
     }
 }
